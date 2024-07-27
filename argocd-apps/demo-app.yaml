@@ -20,5 +20,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
+    syncOptions:   # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/
       - CreateNamespace=true
