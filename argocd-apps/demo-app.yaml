@@ -3,6 +3,10 @@ kind: Application
 metadata:
   name: demo-app
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.slack: argocd-notifications
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: argocd-notifications
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-notifications
 spec:
   destination:
     server: https://kubernetes.default.svc
