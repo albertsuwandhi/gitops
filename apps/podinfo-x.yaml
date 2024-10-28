@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment  # DaemonSet 
+metadata:
+  name: podinfo
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: podinfo
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfo
+          image: stefanprodan/podinfo
+          ports:
+          - containerPort: 9898
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: podinfo-svc
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 9898
+    protocol: TCP
+    targetPort: 9898
+  selector:
+    app: podinfo
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: podinfo
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: podinfo-x.albertsuwandhi.cloud
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: podinfo-svc
+              port:
+               number: 9898
