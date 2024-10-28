@@ -41,7 +41,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: podinfo-x.albertsuwandhi.cloud
+  - host: podinfo.albertsuwandhi.cloud
     http:
       paths:
         - path: /
