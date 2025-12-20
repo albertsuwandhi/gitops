@@ -9,7 +9,7 @@ metadata:
     notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-notifications
 spec:
   destination:
-    server: https://kubernetes.default.svc
+    server: arn:aws:eks:ap-southeast-1:004722542845:cluster/eks-sandbox # https://kubernetes.default.svc
     namespace: app
   project: default
   source:
