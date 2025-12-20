@@ -15,7 +15,7 @@ spec:
         app: eks-auto-mode
     spec:
       containers:
-      - name: zacs
+      - name: podinfo
         image: stefanprodan/podinfo:latest
         ports:
         - containerPort: 80
@@ -63,6 +63,9 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:004722542845:certificate/49490fe4-1d75-4be5-a0a4-0aa9ee7379a3
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
   ingressClassName: eks-auto-alb
   rules:
