@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    server: https://kubernetes.default.svc
+    server: arn:aws:eks:ap-southeast-1:004722542845:cluster/eks-sandbox #https://kubernetes.default.svc
     namespace: argocd
   project: default
   source:
