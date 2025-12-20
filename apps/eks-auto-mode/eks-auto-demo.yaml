@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eks-auto-mode
+  labels:
+    app: eks-auto-mode
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eks-auto-mode
+  template:
+    metadata:
+      labels:
+        app: eks-auto-mode
+    spec:
+      containers:
+      - name: zacs
+        image: stefanprodan/podinfo:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "1"
+            memory: "1Gi"
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: eks-auto-mode-pdb
+spec:
+  minAvailable: 80%
+  selector:
+    matchLabels:
+      app: eks-auto-mode
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eks-auto-mode-service
+spec:
+  selector:
+    app: eks-auto-mode
+  ports:
+    - protocol: TCP
+      port: 9898
+      targetPort: 9898
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: eks-auto-alb
+spec:
+  controller: eks.amazonaws.com/alb
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: eks-auto-mode-ingress
+  annotations:
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+spec:
+  ingressClassName: eks-auto-alb
+  rules:
+    - host: podinfo.albertsuwandhi.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: eks-auto-mode-service
+                port:
+                  number: 9898

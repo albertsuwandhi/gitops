@@ -1,12 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: demo-app
+  name: eks-auto-mode
   namespace: argocd
   # annotations:
-  #   notifications.argoproj.io/subscribe.on-deployed.slack: argocd-notifications
-  #   notifications.argoproj.io/subscribe.on-sync-failed.slack: argocd-notifications
-  #   notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-notifications
 spec:
   destination:
     server: arn:aws:eks:ap-southeast-1:004722542845:cluster/eks-sandbox # https://kubernetes.default.svc
@@ -14,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: "https://github.com/albertsuwandhi/gitops.git"
-    path: apps/demo-app
+    path: apps/eks-auto-mode
     targetRevision: main
   syncPolicy:
     automated:

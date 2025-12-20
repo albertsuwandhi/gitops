@@ -3,14 +3,14 @@ kind: Application
 metadata:
   name: sync-waves
   namespace: argocd
-  annotations:
-    notifications.argoproj.io/subscribe.on-deployed.slack: argocd-notifications
-    notifications.argoproj.io/subscribe.on-sync-failed.slack: argocd-notifications
-    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-notifications
+  # annotations:
+  #   notifications.argoproj.io/subscribe.on-deployed.slack: argocd-notifications
+  #   notifications.argoproj.io/subscribe.on-sync-failed.slack: argocd-notifications
+  #   notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-notifications
 spec:
   destination:
     server: arn:aws:eks:ap-southeast-1:004722542845:cluster/eks-sandbox # https://kubernetes.default.svc
-    namespace: app
+    namespace: demo-app
   project: default
   source:
     repoURL: "https://github.com/albertsuwandhi/gitops.git"
