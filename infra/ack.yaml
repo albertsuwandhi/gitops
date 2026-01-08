@@ -1,13 +1,9 @@
 apiVersion: sqs.services.k8s.aws/v1alpha1
 kind: Queue
 metadata:
-  name: demo-queue-ack
-  namespace: default
+  name: demo-queue-ack-1337
 spec:
-  queueName: demo-queue-ack
-  visibilityTimeout: 30
-  messageRetentionPeriod: 345600
-  delaySeconds: 0
+  queueName: demo-queue-ack-1337
 ---
 # apiVersion: s3.services.k8s.aws/v1alpha1
 # kind: Bucket
