@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     repoURL: "https://github.com/albertsuwandhi/gitops.git"
-    path: infra
+    path: infra/ack.yaml
     targetRevision: main
   syncPolicy:
     automated:
