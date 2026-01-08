@@ -5,6 +5,13 @@ metadata:
 spec:
   queueName: demo-queue-ack-1337
 ---
+apiVersion: sqs.services.k8s.aws/v1alpha1
+kind: Queue
+metadata:
+  name: demo-queue-ack-1338
+spec:
+  queueName: demo-queue-ack-1338
+---
 # apiVersion: s3.services.k8s.aws/v1alpha1
 # kind: Bucket
 # metadata:
