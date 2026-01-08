@@ -8,3 +8,11 @@ spec:
   visibilityTimeout: 30
   messageRetentionPeriod: 345600
   delaySeconds: 0
+---
+# apiVersion: s3.services.k8s.aws/v1alpha1
+# kind: Bucket
+# metadata:
+#   name: demo-ack-bucket-1337
+# spec:
+#   name: demo-ack-bucket-1337
+#   acl: private
