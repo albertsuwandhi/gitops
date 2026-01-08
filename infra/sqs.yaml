@@ -1,0 +1,10 @@
+apiVersion: sqs.services.k8s.aws/v1alpha1
+kind: Queue
+metadata:
+  name: demo-queue-ack
+  namespace: default
+spec:
+  queueName: demo-queue-ack
+  visibilityTimeout: 30
+  messageRetentionPeriod: 345600
+  delaySeconds: 0
